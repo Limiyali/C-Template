@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <assert.h>
 using std::cout;
 using std::endl;
 using std::begin;
@@ -14,13 +15,21 @@ public:
     bool operator== (Stack const&);
     void pop();
     T const & top();
-    void pt();
+    void pt(std::ostream&) const;
     bool empty() const{
         return elems.empty();
     }
+    template<typename U>
+    friend std::ostream& operator<<(std::ostream& strm,Stack<U> const&);
 private:
     std::vector<T>elems;
 };
+
+template<typename T>
+std::ostream& operator<<(std::ostream& strm, Stack<T> const&s){
+    s.pt(strm);
+    return strm;
+}
 
 template<typename T>
 void Stack<T>::push(T const &elem){
@@ -40,10 +49,10 @@ T const & Stack<T>::top(){
 }
 
 template<typename T>
-void Stack<T>::pt(){
-    for(auto it:elems)
-        cout<<it<<" ";
-    cout<<endl;
+void Stack<T>::pt(std::ostream& out) const {
+    for(T const& it:elems)
+        out<<it<<" ";
+    out<<endl;
 }
 
 template<typename T>
@@ -59,10 +68,8 @@ bool Stack<T>::operator==(Stack<T> const& rhs){
 
 int main(){
     Stack<int>a;
-    a.push(1);
-    a.push(2);
-    a.pt();
-    Stack<int>b(a);
-    b.pt();
-    cout<<(a==b)<<endl;
+    a.push(3);
+    a.push(4);
+    cout<<a<<endl;
+
 }

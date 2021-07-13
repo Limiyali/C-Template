@@ -1,7 +1,18 @@
 #include <iostream>
 using namespace std;
 
+class A{
+public:
+    A(){
+        cout<<"A()\n";
+    }
+    ~A(){
+        cout<<"~A()\n";
+    }
+};
+
 int main(){
-    cout<<"Hello world\n";
+    A * p = new A[4];
+    delete p;
     return 0;
 }

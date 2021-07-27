@@ -15,6 +15,7 @@ class Stack{
 public:
     void push(T const&);
     Stack():elems(){};
+    Stack(T elem):elems({elem}){};
     Stack (Stack const&);
     bool operator== (Stack const&);
     void pop();
@@ -76,6 +77,7 @@ public:
     Stack():elems(){
         cout<<"string\n";
     };
+    Stack(string elem):elems({elem}){};
     Stack (Stack const&);
     bool operator== (Stack const&);
     void pop();
@@ -122,13 +124,15 @@ bool Stack<string>::operator==(Stack<string> const& rhs){
     return this->elems==rhs.elems;
 }
 
+
 template<typename T>
-class Stack<T*>{
+class Stack<T*>{ 
 public:
     void push(T* const&);
     Stack():elems(){
         cout<<"T*\n";
     };
+    Stack(T* elem):elems({elem}){};
     Stack (Stack const&);
     bool operator== (Stack const&);
     void pop();
@@ -182,16 +186,11 @@ template<typename T>
 bool Stack<T*>::operator==(Stack<T*> const& rhs){
     return this->elems==rhs.elems;
 }
-
+Stack( char const*) -> Stack<std::string>;
 
 
 int main(){
-    Stack<int*>a;
-    a.push(new int{1});
-    a.push(new int{2});
-    a.pt(cout);
-    delete a.top();
-    a.pop();
-    cout<<a<<endl;
+    Stack a{"234"};
+    cout<<typeid(a.top()).name()<<endl;
     return 0;
 }

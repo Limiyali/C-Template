@@ -5,29 +5,22 @@ using std::endl;
 
 class Data{
 public:
-#if 1
+#if 0
     Data(){
         cout<<"Data()\n";
     }
     Data(Data const&){
         cout<<"Data(const &)\n";
     }
-    Data(Data const&&){
-        cout<<"Data(const &)\n";
-    }
     ~Data(){
         cout<<"~Data()\n";
-    }
-    Data& operator=(Data const&){
-        cout<<"Data=\n";
-        return *this;
     }
 #endif
 };
 
 class A{
 public:
-#if 1
+#if 0
     A(){
         cout<<"A()\n";
     }
@@ -41,20 +34,14 @@ public:
     virtual void pt(){
         cout<<"is A\n";
     }
-    A& operator=(A const&){
-        cout<<"A=\n";
-        return *this;
-    }
-    operator Data(){
-        cout<<"A to Data\n";
-        Data tmp;
-        cout<<&tmp<<endl;
-        return tmp;
-    }
 private:
     Data d1;
     Data d2;
 };
+
+void f(A& a){
+    cout <<"f(A )\n";
+}
 
 class B:public A{
 public:
@@ -63,11 +50,7 @@ public:
     }
 };
 
-void f(A a){
-    cout <<"f(A )\n";
-}
-
-void f2(A a){
+void f2(A& a){
     a.pt();
 }
 
@@ -76,16 +59,8 @@ int main(){
     // cout<<"----\n";
     // f(a);
     // cout<<"----\n";
-    // B b;
-    // cout<<"----\n";
-    // f2(b);
-    // A a;
-    // A b = a;
-    // b =a;
-    A a;
-    cout <<"----\n";
-    Data d = a;
-    cout<<&d<<endl;
-    cout <<"----\n";
+    B b;
+    cout<<"----\n";
+    f2(b);
     return 0;
 }

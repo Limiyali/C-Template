@@ -94,4 +94,6 @@ int main()
 {
     auto t = make_tuple(12, "monkeys", 2.0);
     printByIdx(t,Indices<0,1,2>());
+    tuple<int,string,float>a={1,"a",0.5};
+    cout<<get<2>(a);
 }

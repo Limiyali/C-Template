@@ -29,7 +29,7 @@ public:
 
 template <> class sum<0> {
 public:
-  const static int value = 1;
+  const static int value = 0;
 };
 
 

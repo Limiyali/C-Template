@@ -52,16 +52,16 @@ public:
 
 template <typename Company> class LoggingMsgSender : public MsgSender<Company> {
 public:
-//   using MsgSender<Company>::sendClear;
-//   using MsgSender<Company>::sendSecret;
+  // using MsgSender<Company>::sendClear;
+  // using MsgSender<Company>::sendSecret;
   void sendClearMsg(const string &msg) {
     // do something
-    this->sendClear(msg);
+    sendClear(msg);
     // MsgSender<Company>::sendClear(msg);
   }
   void sendSecretMsg(const string &msg) {
     // do something
-    this->sendSecret(msg);
+    sendSecret(msg);
     // MsgSender<Company>::sendSecret(msg);
   }
 };

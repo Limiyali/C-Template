@@ -18,16 +18,16 @@ struct __list_node
 template<typename T, typename Ref, typename Ptr>
 struct __list_iterator {
 
-	typedef __list_iterator<T, T&, T*>      iterator;
-	typedef __list_iterator<T,Ref,Ptr>      self;
+	typedef __list_iterator<T, T&, T*>        iterator;
+	typedef __list_iterator<T,Ref,Ptr>        self;
 
-  typedef std::bidirectional_iterator_tag iterator_category;
-	typedef T				                        value_type;
-	typedef Ptr				                      pointer;
-	typedef Ref				                      reference;
-	typedef __list_node<T>*	                link_type;
-	typedef size_t			                    size_type;
-	typedef ptrdiff_t		                    difference_type;
+  typedef std::bidirectional_iterator_tag   iterator_category;
+	typedef T				                          value_type;
+	typedef Ptr				                        pointer;
+	typedef Ref				                        reference;
+	typedef __list_node<T>*	                  link_type;
+	typedef size_t			                      size_type;
+	typedef ptrdiff_t		                      difference_type;
 
 
   link_type node;
@@ -66,18 +66,18 @@ struct __list_iterator {
 template <typename T, typename Alloc = shuxin::pool_alloc> class my_list {
 
 public:
-  typedef T                     value_type;
-  typedef value_type            *pointer;
-  typedef value_type            &reference;
+  typedef T                                          value_type;
+  typedef value_type                                 *pointer;
+  typedef value_type                                 &reference;
   typedef __list_iterator<T,reference,pointer>       iterator;
-  typedef ptrdiff_t             difference_type;
-  typedef size_t                size_type;
+  typedef ptrdiff_t                                  difference_type;
+  typedef size_t                                     size_type;
 
 protected:
-  typedef __list_node<T>                          list_node;
-  typedef shuxin::simple_alloc<list_node, Alloc>  list_node_allocator;
+  typedef __list_node<T>                             list_node;
+  typedef shuxin::simple_alloc<list_node, Alloc>     list_node_allocator;
 public:
-  typedef list_node*                              link_type;
+  typedef list_node*                                 link_type;
 protected:
   link_type node;
 
@@ -123,15 +123,15 @@ public:
     erase(--tmp);
   }
   iterator erase(iterator position) {
-    link_type next_node = (link_type)(position.node->next);
-    link_type prev_node = (link_type)(position.node->prev);
+    link_type next_node = position.node->next;
+    link_type prev_node = position.node->prev;
     prev_node->next = next_node;
     next_node->prev = prev_node;
     destory_node(position.node);
     return iterator(next_node);
   }
   void clear() {
-    link_type cur = (link_type)(node->next);
+    link_type cur = node->next;
     while (cur != node) {
       link_type tmp = cur;
       cur = (link_type)cur->next;
@@ -233,7 +233,6 @@ protected:
     positon.node->prev = tmp;
     return tmp;
   }
-
 };
 
 int main() {

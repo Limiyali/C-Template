@@ -1,7 +1,8 @@
 #include "jjalloc.cpp"
+#include "utils/type.h"
 #include <iostream>
 #include <memory>
-
+#include <type_traits>
 using std::cout;
 using std::endl;
 
@@ -35,8 +36,8 @@ protected:
 public:
   iterator begin() { return start; }
   iterator end() { return finish; }
-  size_type size()  { return size_type(end() - begin()); }
-  size_type capacity()  { return size_type(end_of_storage - begin()); }
+  size_type size() { return size_type(end() - begin()); }
+  size_type capacity() { return size_type(end_of_storage - begin()); }
   bool empty() const { return begin() == end(); }
   reference operator[](size_type n) { return *(begin() + n); }
   my_vector() : start(0), finish(0), end_of_storage(0) {}
@@ -121,14 +122,19 @@ protected:
   }
 };
 
-int main() {
-  my_vector<int> a;
-  a.push_back(3);
-  a.push_back(4);
-  a.push_back(5);
-  a.erase(a.begin() + 1);
-  for (auto it : a)
-    cout << it << " ";
-  cout << endl;
-  return 0;
-}
+// int main() {
+//   my_vector<int, shuxin::malloc_alloc> a;
+//   a.push_back(3);
+//   a.push_back(4);
+//   a.push_back(5);
+//   a.erase(a.begin() + 1);
+//   for (auto it : a)
+//     cout << it << " ";
+//   cout << endl;
+//   cout << a[0] << endl;
+//   my_vector<int>::iterator it;
+//   std::iterator_traits<my_vector<int>::iterator>::iterator_category it2;
+//   shuxin::print_type(it2);
+//   shuxin::print_type(it);
+//   return 0;
+// }

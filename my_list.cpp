@@ -82,7 +82,7 @@ protected:
   link_type node;
 
 public:
-  iterator begin() { return (link_type)(*node).next; }
+  iterator begin() { return (*node).next; }
   iterator end() { return node; }
   bool empty(){ return node->next == node;}
   size_type size() {
@@ -134,7 +134,7 @@ public:
     link_type cur = node->next;
     while (cur != node) {
       link_type tmp = cur;
-      cur = (link_type)cur->next;
+      cur = cur->next;
       destory_node(tmp);
     }
     node->next = node;

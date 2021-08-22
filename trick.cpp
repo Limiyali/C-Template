@@ -60,4 +60,8 @@ int main(int argc, char** argv) {
     std::tuple<int,char,double>a(1,'a',2.3);
     shuxin::printTuple(a);
     shuxin::printTuple(std::make_tuple(1,"adsf",3,3.3));
+    auto &b =a;
+    const int * c;
+    shuxin::print_type(c);
+    shuxin::print_full_type<const int * &&>();
 }

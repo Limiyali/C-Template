@@ -1,7 +1,9 @@
 #include <iostream>
 #include <set>
 #include <cassert>
+#include <tuple>
 #include "utils/type.h"
+#include "utils/utils.h"
 using namespace std;
 #define link(x,y) x##y
 #define toString(x) #x
@@ -25,7 +27,7 @@ public:
     Container<T> mcon;
 };
 
-  } template <bool> struct CompileTimeChecker
+template <bool> struct CompileTimeChecker
 {
 CompileTimeChecker(...);
 };
@@ -47,6 +49,7 @@ To safe_cast(From from)
   Destination_Type_Too_Narrow);
   return static_cast<To>(from);
 }
+
 int main(int argc, char** argv) {
     // class ERROR_12 {};
     // ERROR_12 f;
@@ -54,7 +57,7 @@ int main(int argc, char** argv) {
     // CompileTimeChecker<false>bb(f);
     // int64_t a;
     // int32_t b = safe_cast<int32_t>(a);
-    AnyType ty;
-    shuxin::print_type(ty);
-    cout<<my_ptr<int,void,int>::value<<endl;
+    std::tuple<int,char,double>a(1,'a',2.3);
+    shuxin::printTuple(a);
+    shuxin::printTuple(std::make_tuple(1,"adsf",3,3.3));
 }

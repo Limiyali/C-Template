@@ -250,10 +250,10 @@ int main() {
   b.push_back(9);
   b.push_back(10);
   b.push_back(11);
-  // a.splice(a.end(),b);
+  a.splice(a.end(),b);
   shuxin::pt(a);
   shuxin::pt(b);
-  a.merge(b);
+  // a.merge(b);
   shuxin::pt(a);
   a.reverse();
   shuxin::pt(a);

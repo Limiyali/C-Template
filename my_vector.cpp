@@ -122,19 +122,18 @@ protected:
   }
 };
 
-// int main() {
-//   my_vector<int, shuxin::malloc_alloc> a;
-//   a.push_back(3);
-//   a.push_back(4);
-//   a.push_back(5);
-//   a.erase(a.begin() + 1);
-//   for (auto it : a)
-//     cout << it << " ";
-//   cout << endl;
-//   cout << a[0] << endl;
-//   my_vector<int>::iterator it;
-//   std::iterator_traits<my_vector<int>::iterator>::iterator_category it2;
-//   shuxin::print_type(it2);
-//   shuxin::print_type(it);
-//   return 0;
-// }
+int main() {
+  my_vector<int, shuxin::pool_alloc> a;
+  a.push_back(3);
+  a.push_back(4);
+  a.push_back(5);
+  a.erase(a.begin() + 1);
+  for (auto it : a)
+    cout << it << " ";
+  cout << endl;
+  my_vector<int>::iterator it;
+  std::iterator_traits<my_vector<int>::iterator>::iterator_category it2;
+  shuxin::print_type(it2);
+  shuxin::print_type(it);
+  return 0;
+}

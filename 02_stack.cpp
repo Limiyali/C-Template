@@ -163,6 +163,12 @@ template <typename T> bool Stack<T *>::operator==(Stack<T *> const &rhs) {
 
 Stack(const char *)->Stack<string>;
 
+template <typename T> struct A {
+  T x;
+  string s;
+};
+A(const char *, const char *)->A<string>;
+
 int main() {
   Stack<int> a;
   a.push(3);
@@ -180,5 +186,7 @@ int main() {
   //   d.pt();
   Stack stringStack{"buttom"};
   shuxin::print_full_type<decltype(stringStack.top())>();
+  A e = {"hi", "initial value"};
+  cout << e.x << endl;
   return 0;
 }
